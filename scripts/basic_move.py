@@ -3,10 +3,15 @@
 import rospy
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist
+from nav_msgs.msg import Odometry
+
+def turt_odom_cb(msg):
+    rospy.loginfo(rospy.get_caller_id() + "I heard %s", msg)
 
 def turt_move():
-    cmd_vel = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
     rospy.init_node('basic_move', anonymous=True)
+    cmd_vel = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+    rospy.Subscriber('/odom', Odometry, turt_odom_cb)
     velocity = Twist()
 
     while not rospy.is_shutdown():
