@@ -21,12 +21,12 @@ from sensor_msgs.msg import CameraInfo
 def turt_vid_cb(msg):
     rospy.loginfo("SUBSCRIBING TO COMPRESSED IMAGE TOPIC")
     # rospy.loginfo(rospy.get_caller_id() + "I heard %s", msg)
-    img.publish(msg)
+    # img.publish(msg)
 
 def turt_cam_info_cb(msg):
     rospy.loginfo("SUBSCRIBING TO CAM INFO TOPIC")
     # rospy.loginfo(rospy.get_caller_id() + "I heard %s", msg)
-    cam_info.publish(msg)
+    # cam_info.publish(msg)
 
 def fid_vert_cb(msg):
     rospy.loginfo("SUBSCRIBING TO FID VERT TOPIC")
@@ -40,8 +40,8 @@ def aruco_get():
     rospy.init_node('aruco_robot', anonymous=True)
     global cam_info
     global img
-    cam_info = rospy.Publisher('/camera_info', CameraInfo, queue_size=10)
-    img = rospy.Publisher('/camera/compressed', CompressedImage, queue_size=10)
+    # cam_info = rospy.Publisher('/camera_info', CameraInfo, queue_size=10)
+    # img = rospy.Publisher('/camera/compressed', CompressedImage, queue_size=10)
     rospy.Subscriber('/camera/rgb/image_raw/compressed', CompressedImage, turt_vid_cb)
     rospy.Subscriber('/camera/rgb/camera_info', CameraInfo, turt_cam_info_cb)
     rospy.Subscriber('/fiducial_vertices', FiducialArray, fid_vert_cb)
